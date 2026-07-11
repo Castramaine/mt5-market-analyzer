@@ -14,12 +14,20 @@
             <h1>📊 MT5 Market Analyzer</h1>
             <div class="header-controls">
                 <select id="symbolSelect" class="select-control">
-                    <option value="EURUSD">EURUSD</option>
-                    <option value="GBPUSD">GBPUSD</option>
-                    <option value="USDJPY">USDJPY</option>
-                    <option value="AUDUSD">AUDUSD</option>
-                    <option value="GOLD">GOLD</option>
-                    <option value="SPX500">SPX500</option>
+                    <optgroup label="Forex">
+                        <option value="EURUSD">EURUSD</option>
+                        <option value="GBPUSD">GBPUSD</option>
+                        <option value="USDJPY">USDJPY</option>
+                        <option value="AUDUSD">AUDUSD</option>
+                    </optgroup>
+                    <optgroup label="Commodities">
+                        <option value="GOLD">GOLD</option>
+                    </optgroup>
+                    <optgroup label="Indices">
+                        <option value="SPX500">SPX500 (S&P 500)</option>
+                        <option value="US100">US100 (Nasdaq-100)</option>
+                        <option value="US30">US30 (Dow Jones 30)</option>
+                    </optgroup>
                 </select>
                 <select id="timeframeSelect" class="select-control">
                     <option value="M5">M5</option>
@@ -179,7 +187,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>MT5 Market Analyzer v1.0 | Last Updated: <span id="lastUpdate">-</span></p>
+            <p>MT5 Market Analyzer v1.1 | Last Updated: <span id="lastUpdate">-</span></p>
         </footer>
     </div>
 
