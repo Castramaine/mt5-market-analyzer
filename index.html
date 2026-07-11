@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT5 Market Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📊 MT5 Market Analyzer</h1>
+            <div class="header-controls">
+                <select id="symbolSelect" class="select-control">
+                    <option value="EURUSD">EURUSD</option>
+                    <option value="GBPUSD">GBPUSD</option>
+                    <option value="USDJPY">USDJPY</option>
+                    <option value="AUDUSD">AUDUSD</option>
+                    <option value="GOLD">GOLD</option>
+                    <option value="SPX500">SPX500</option>
+                </select>
+                <select id="timeframeSelect" class="select-control">
+                    <option value="M5">M5</option>
+                    <option value="M15">M15</option>
+                    <option value="M30">M30</option>
+                    <option value="H1">H1</option>
+                    <option value="H4">H4</option>
+                    <option value="D1">D1</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Chart Section -->
+            <section class="chart-section">
+                <div class="chart-container">
+                    <canvas id="marketChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Analysis Tabs -->
+            <div class="tabs-container">
+                <button class="tab-button active" data-tab="structure">Market Structure</button>
+                <button class="tab-button" data-tab="zones">Supply/Demand</button>
+                <button class="tab-button" data-tab="levels">S/R Levels</button>
+                <button class="tab-button" data-tab="trend">Trend Analysis</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tabs-content">
+                <!-- Market Structure Tab -->
+                <div id="structure" class="tab-content active">
+                    <div class="analysis-card">
+                        <h3>Market Structure Analysis</h3>
+                        <div class="structure-analysis">
+                            <div class="metric-item">
+                                <label>Trend Direction:</label>
+                                <span id="trendDirection" class="value">-</span>
+                            </div>
+                            <div class="metric-item">
+                                <label>Higher High:</label>
+                                <span id="higherHigh" class="value">-</span>
+                            </div>
+                            <div class="metric-item">
+                                <label>Higher Low:</label>
+                                <span id="higherLow" class="value">-</span>
+                            </div>
+                            <div class="metric-item">
+                                <label>Lower High:</label>
+                                <span id="lowerHigh" class="value">-</span>
+                            </div>
+                            <div class="metric-item">
+                                <label>Lower Low:</label>
+                                <span id="lowerLow" class="value">-</span>
+                            </div>
+                            <div class="metric-item">
+                                <label>Structure Break:</label>
+                                <span id="structureBreak" class="value">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supply/Demand Zones Tab -->
+                <div id="zones" class="tab-content">
+                    <div class="analysis-card">
+                        <h3>Supply & Demand Zones</h3>
+                        <div class="zones-container">
+                            <div class="zone-section">
+                                <h4>📈 Supply Zones</h4>
+                                <div id="supplyZones" class="zones-list">
+                                    <p class="loading">Analyzing...</p>
+                                </div>
+                            </div>
+                            <div class="zone-section">
+                                <h4>📉 Demand Zones</h4>
+                                <div id="demandZones" class="zones-list">
+                                    <p class="loading">Analyzing...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support/Resistance Tab -->
+                <div id="levels" class="tab-content">
+                    <div class="analysis-card">
+                        <h3>Support & Resistance Levels</h3>
+                        <div class="levels-container">
+                            <div class="levels-section">
+                                <h4>🛡️ Resistance Levels</h4>
+                                <div id="resistanceLevels" class="levels-list">
+                                    <p class="loading">Analyzing...</p>
+                                </div>
+                            </div>
+                            <div class="levels-section">
+                                <h4>🔻 Support Levels</h4>
+                                <div id="supportLevels" class="levels-list">
+                                    <p class="loading">Analyzing...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trend Analysis Tab -->
+                <div id="trend" class="tab-content">
+                    <div class="analysis-card">
+                        <h3>Trend Analysis</h3>
+                        <div class="trend-analysis">
+                            <div class="trend-metric">
+                                <label>Current Trend:</label>
+                                <span id="currentTrend" class="value trend-badge">-</span>
+                            </div>
+                            <div class="trend-metric">
+                                <label>Trend Strength:</label>
+                                <span id="trendStrength" class="value">-</span>
+                            </div>
+                            <div class="trend-metric">
+                                <label>Momentum:</label>
+                                <span id="momentum" class="value">-</span>
+                            </div>
+                            <div class="trend-metric">
+                                <label>Volatility:</label>
+                                <span id="volatility" class="value">-</span>
+                            </div>
+                            <div class="trend-metric">
+                                <label>RSI Value:</label>
+                                <span id="rsiValue" class="value">-</span>
+                            </div>
+                            <div class="trend-metric">
+                                <label>MACD Signal:</label>
+                                <span id="macdSignal" class="value">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Action Info -->
+            <section class="price-action-section">
+                <div class="analysis-card">
+                    <h3>Price Action Signals</h3>
+                    <div id="priceActionSignals" class="signals-container">
+                        <p class="loading">Analyzing price action...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controls -->
+            <div class="action-buttons">
+                <button id="analyzeBtn" class="btn btn-primary">🔄 Analyze Market</button>
+                <button id="exportBtn" class="btn btn-secondary">📥 Export Data</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>MT5 Market Analyzer v1.0 | Last Updated: <span id="lastUpdate">-</span></p>
+        </footer>
+    </div>
+
+    <script src="marketData.js"></script>
+    <script src="analyzer.js"></script>
+    <script src="chartRenderer.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
