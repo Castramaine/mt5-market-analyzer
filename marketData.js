@@ -2,20 +2,30 @@
 class MarketDataGenerator {
     constructor() {
         this.basePrice = {
+            // Forex
             'EURUSD': 1.0850,
             'GBPUSD': 1.2750,
             'USDJPY': 149.50,
             'AUDUSD': 0.6850,
+            // Commodities
             'GOLD': 2350.00,
-            'SPX500': 5450.00
+            // Indices
+            'SPX500': 5450.00,
+            'US100': 18500.00,
+            'US30': 39850.00
         };
         this.volatility = {
+            // Forex
             'EURUSD': 0.002,
             'GBPUSD': 0.0025,
             'USDJPY': 0.15,
             'AUDUSD': 0.0025,
+            // Commodities
             'GOLD': 5.0,
-            'SPX500': 10.0
+            // Indices
+            'SPX500': 10.0,
+            'US100': 15.0,
+            'US30': 12.0
         };
     }
 
